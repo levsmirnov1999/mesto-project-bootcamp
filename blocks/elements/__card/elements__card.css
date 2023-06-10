@@ -1,0 +1,10 @@
+.elements__card {
+  width: 282px;
+  background-color: white;
+  border-radius: 10px;
+}
+@media screen and (max-width: 890px) {
+  .elements__card {
+    margin: 0 auto;
+  }
+}
