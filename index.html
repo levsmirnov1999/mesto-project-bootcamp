@@ -11,103 +11,71 @@
   <div class="page">
     <header class="header">
       <img src="./images/Logo.svg" alt="Логотип" class="header__logo">
-      <div class="header__line"></div>
     </header>
-    <section class="profile">
-      <div class="profile__user">
-        <img src="./images/Avatar.png" alt="Аватарка" class="profile__avatar">
-        <div class="profile__info">
-          <div class="profile__name-about-me">
-            <h1 class="profile__name">
-              Жак-Ив Кусто
-            </h1>
-            <h2 class="profile__about-me">
-              Исследователь океана
-            </h2>
+    <main class="content">
+      <section class="profile">
+        <div class="profile__user">
+          <img src="./images/Avatar.png" alt="Аватарка" class="profile__avatar">
+          <div class="profile__info">
+            <div class="profile__name-about-me">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <h2 class="profile__about-me">Исследователь океана</h2>
+            </div>
+            <button type="button" class="profile__edit-button"></button>
           </div>
-          <button class="profile__edit-button"></button>
         </div>
-      </div>
-      <button class="profile__add-button"></button>
-    </section>
-    <section class="elements">
-      <div class="elements__card">
-        <img src="./images/Karachayevsk.png" alt="фото" class="elements__photo">
-        <div class="elements__description">
-          <h2 class="elements__title">
-            Карачаевск
-          </h2>
-          <button class="elements__like-button">
-          </button>
-        </div>
-      </div>
-      <div class="elements__card">
-        <img src="./images/Elbrus.png" alt="фото" class="elements__photo">
-        <div class="elements__description">
-          <h2 class="elements__title">
-            Гора Эльбрус
-          </h2>
-          <button class="elements__like-button elements__like-button_active">
-          </button>
-        </div>
-      </div>
-      <div class="elements__card">
-        <img src="./images/Dombay.png" alt="фото" class="elements__photo">
-        <div class="elements__description">
-          <h2 class="elements__title">
-            Домбай
-          </h2>
-          <button class="elements__like-button">
-          </button>
-        </div>
-      </div>
-      <div class="elements__card">
-        <img src="./images/Elbrus.png" alt="фото" class="elements__photo">
-        <div class="elements__description">
-          <h2 class="elements__title">
-            Гора Эльбрус
-          </h2>
-          <button class="elements__like-button">
-          </button>
-        </div>
-      </div>
-      <div class="elements__card">
-        <img src="./images/Dombay.png" alt="фото" class="elements__photo">
-        <div class="elements__description">
-          <h2 class="elements__title">
-            Домбай
-          </h2>
-          <button class="elements__like-button">
-          </button>
-        </div>
-      </div>
-      <div class="elements__card">
-        <img src="./images/Karachayevsk.png" alt="фото" class="elements__photo">
-        <div class="elements__description">
-          <h2 class="elements__title">
-            Карачаево-Черкессия
-          </h2>
-          <button class="elements__like-button">
-          </button>
-        </div>
-      </div>
-    </section>
+        <button type="button" class="profile__add-button"></button>
+      </section>
+      <section class="elements">
+        
+      </section>
+    </main>
     <footer class="footer">
-      <h2 class="footer__copyright">
+      <p class="footer__copyright">
         &copy; 2020 Mesto Russia
-      </h2>
+      </p>
     </footer>
   </div>
-  <section class="popup">
-    <div class="popup__container">
-      <button class="popup__close-icon"></button>
-      <h2 class="popup__title">
-        Редактировать профиль
-      </h2>
-      <input type="text" placeholder="Жак-Ив Кусто" class="popup__name">
-      <input type="text" placeholder="Исследователь океана" class="popup__about-me">
-      <button class="popup__save-button">Сохранить</button>
+  <template id="card-template">
+    <div class="elements__card">
+      <button class="elements__delete-icon"></button>
+      <img src="" alt="фото" class="elements__photo">
+      <div class="elements__description">
+        <h2 class="elements__title"></h2>
+        <button type="button" class="elements__like-button">
+        </button>
+      </div>
+    </div>
+  </template>
+  <section class="popup popup_image">
+    <div class="popup__container-image">
+      <button class="popup__close-icon popup__close-icon_place_image"></button>
+      <img src="" alt="фото" class="popup__image">
+      <h2 class="popup__description"></h2>
     </div>
   </section>
+  <section class="popup popup_edit-profile">
+    <div class="popup__container">
+      <button class="popup__close-icon popup__close-icon_place_edit-profile"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form class="popup__form popup__form_place_edit-profile" name="popup__form">
+        <input type="text" name="name" placeholder="Ваше имя" class="popup__input popup__input_profile_name">
+        <input type="text" name="about-me" placeholder="Ваш род деятельности" class="popup__input popup__input_profile_about-me">
+        <button class="popup__save-button popup__save-button_place_edit-profile">Сохранить</button>
+      </form>
+    </div>
+  </section>
+  <section class="popup popup_add-item">
+    <div class="popup__container">
+      <button class="popup__close-icon popup__close-icon_place_add-item"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form popup__form_place_add-item" name="popup__form">
+        <input type="text" name="title" placeholder="Название" class="popup__input popup__input_new-item_title">
+        <input type="text" name="link" placeholder="Ссылка на картинку" class="popup__input popup__input_new-item_link">
+        <button class="popup__save-button popup__save-button_place_add-item">Создать</button>
+      </form>
+    </div>
+  </section>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>

@@ -15,5 +15,12 @@
   transition-delay: 0;
 }
 .popup__close-icon:hover {
-  opacity: 0.5;
+  opacity: 0.6;
+}
+@media screen and (max-width: 890px) {
+  .popup__close-icon {
+    width: 20px;
+    height: 20px;
+    right: 0;
+  }
 }

@@ -1,5 +1,5 @@
 .elements__description {
   display: flex;
   justify-content: space-between;
-  height: 79px;
+  margin-bottom: 23px;
 }
