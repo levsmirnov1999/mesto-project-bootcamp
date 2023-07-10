@@ -1,0 +1,7 @@
+.profile__avatar-container {
+  position: relative;
+  display: inline-block;
+}
+.profile__avatar-container:hover .profile__avatar-edit {
+  opacity: 1;
+}

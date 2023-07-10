@@ -14,24 +14,45 @@ const aboutMeInput = document.querySelector(".popup__input_profile_about-me");
 const saveButton = document.querySelector(".popup__save-button_place_edit-profile");
 const name = document.querySelector(".profile__name");
 const aboutMe = document.querySelector(".profile__about-me");
-const popups = [popupEditProfile, popupAddItem, popupImage];
+const avatar = document.querySelector(".profile__avatar");
+const editAvatarButton = document.querySelector(".profile__avatar-edit");
+const popupEditAvatar = document.querySelector('.popup_edit-avatar');
+const popupCloseButtonEditAvatar = document.querySelector('.popup__close-icon_place_edit-avatar');
+const formElementEditAvatar = document.querySelector('.popup__form_place_edit-avatar');
+const avatarInput = document.querySelector('.popup__input_edit-avatar_link');
+const saveButtonAvatar = document.querySelector('.popup__save-button_place_edit-avatar');
+
+
+function editAvatarImage() {
+  avatar.setAttribute('src', avatarInput.value);
+}
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  const closePopupEsc = (event) => {
+    const key = event.key;
+    if (key === "Escape") {
+      closePopup(popup)
+      document.removeEventListener('keydown', closePopupEsc)
+    }
+  }
+  document.addEventListener('keydown', closePopupEsc)
 }
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  const inputs = popup.querySelectorAll('.popup__input');
+  inputs.forEach(input => {
+    input.value = '';
+  })
 }
-function handleFormSubmit(evt) {
-  evt.preventDefault();
+function editProfileInfo() {
   name.textContent = nameInput.value;
   aboutMe.textContent = aboutMeInput.value;
-  popupEditProfile.classList.remove("popup_opened");
 };
 function closePopupOnOverlayClick(popup, event) {
   if (event.target.classList.contains('popup')) {
-    popup.classList.remove("popup_opened");
+    closePopup(popup)
   }
 }
 
-export { editButton, popupEditProfile, popupCloseButtonEditProfile, addButton, popupAddItem, popupCloseButtonAddItem, popupImage, popupCloseButtonImage, image, popupDescription, popups, openPopup, closePopup, formElementEditProfile, nameInput, aboutMeInput, saveButton, name, aboutMe, handleFormSubmit, closePopupOnOverlayClick };
+export { editButton, editAvatarButton, editAvatarImage, popupEditAvatar, popupCloseButtonEditAvatar, formElementEditAvatar, avatarInput, saveButtonAvatar, popupEditProfile, popupCloseButtonEditProfile, addButton, popupAddItem, popupCloseButtonAddItem, popupImage, popupCloseButtonImage, image, popupDescription, openPopup, closePopup, formElementEditProfile, nameInput, aboutMeInput, saveButton, name, aboutMe, avatar, editProfileInfo, closePopupOnOverlayClick };
