@@ -1,35 +1,49 @@
-const formElementAddItem = document.querySelector(".popup__form_place_add-item");
+const formElementAddItem = document.querySelector(
+  ".popup__form_place_add-item"
+);
 const titleInput = document.querySelector(".popup__input_new-item_title");
 const linkInput = document.querySelector(".popup__input_new-item_link");
-const createButton = document.querySelector(".popup__save-button_place_add-item");
+const createButton = document.querySelector(
+  ".popup__save-button_place_add-item"
+);
 const cardsContainer = document.querySelector(".elements");
 
 import { closePopup, openPopup, popupAddItem } from "./modal";
 import { popupImage, popupDescription, image } from "./modal";
-import { deleteCard, profileId, likeCard, dislikeCard } from "./api";
+import { deleteCard, likeCard, dislikeCard } from "./api";
+import { profileId } from "../index";
 
 function createCard(data) {
-  const cardTemplate = document.querySelector('#card-template').content;
-  const cloneCard = cardTemplate.querySelector(".elements__card").cloneNode(true);
-
+  const cardTemplate = document.querySelector("#card-template").content;
+  const cloneCard = cardTemplate
+    .querySelector(".elements__card")
+    .cloneNode(true);
+  const cardPhoto = cloneCard.querySelector(".elements__photo");
   cloneCard.querySelector(".elements__title").textContent = data.name;
-  cloneCard.querySelector(".elements__photo").setAttribute('src', data.link);
+  cardPhoto.setAttribute("src", data.link);
+  cardPhoto.setAttribute("alt", data.name);
 
   const likeButton = cloneCard.querySelector(".elements__like-button");
   const likeCounter = cloneCard.querySelector(".elements__like-counter");
+  const deleteIcon = cloneCard.querySelector(".elements__delete-icon");
 
   likeButton.addEventListener("click", function (evt) {
-    evt.target.classList.toggle("elements__like-button_active");
-
+    //evt.target.classList.toggle("elements__like-button_active");
     // Отправляем запрос на сервер для постановки или снятия лайка
-    if (evt.target.classList.contains("elements__like-button_active")) {
-      likeCard(data._id).then(function (data) {
-        updateLikeCounter(data.likes.length); // Обновляем счетчик лайков
-      })
+    if (!evt.target.classList.contains("elements__like-button_active")) {
+      likeCard(data._id)
+        .then(function (data) {
+          updateLikeCounter(data.likes.length); // Обновляем счетчик лайков
+          evt.target.classList.toggle("elements__like-button_active");
+        })
+        .catch((error) => console.log(error));
     } else {
-      dislikeCard(data._id).then(function (data) {
-        updateLikeCounter(data.likes.length); // Обновляем счетчик лайков
-      })
+      dislikeCard(data._id)
+        .then(function (data) {
+          updateLikeCounter(data.likes.length); // Обновляем счетчик лайков
+          evt.target.classList.toggle("elements__like-button_active");
+        })
+        .catch((error) => console.log(error));
     }
   });
   for (const like of data.likes) {
@@ -38,16 +52,18 @@ function createCard(data) {
     }
   }
   if (data.owner._id === profileId) {
-    cloneCard.querySelector(".elements__delete-icon").classList.add("elements__delete-icon_hidden")
-    cloneCard.querySelector(".elements__delete-icon").addEventListener("click", function (evt) {
-      deleteCard(data._id).then(() => evt.target.parentNode.remove())
-    })
+    deleteIcon.classList.add("elements__delete-icon_hidden");
+    deleteIcon.addEventListener("click", function (evt) {
+      deleteCard(data._id)
+        .then(() => evt.target.closest(".elements__card").remove())
+        .catch((error) => console.log(error));
+    });
   }
 
-  cloneCard.querySelector(".elements__photo").addEventListener("click", function () {
-    openPopup(popupImage)
+  cardPhoto.addEventListener("click", function () {
+    openPopup(popupImage);
     popupDescription.textContent = data.name;
-    image.setAttribute('src', data.link);
+    image.setAttribute("src", data.link);
   });
 
   // Функция для обновления счетчика лайков
@@ -57,17 +73,18 @@ function createCard(data) {
 
   // Инициализируем счетчик лайков
   updateLikeCounter(data.likes.length);
-
-  cardsContainer.prepend(cloneCard);
-
   return cloneCard;
-
 }
 function addCard(data) {
-  createCard(data);
-  
+  cardsContainer.prepend(createCard(data));
 }
 
-
-export { formElementAddItem, titleInput, linkInput, createButton, cardsContainer, createCard, addCard };
-
+export {
+  formElementAddItem,
+  titleInput,
+  linkInput,
+  createButton,
+  cardsContainer,
+  createCard,
+  addCard,
+};
