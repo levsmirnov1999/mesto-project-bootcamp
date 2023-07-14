@@ -1,5 +1,3 @@
-import { enableValidation, formSettings } from "./validate";
-
 const editButton = document.querySelector(".profile__edit-button");
 const popupEditProfile = document.querySelector(".popup_edit-profile");
 const popupCloseButtonEditProfile = document.querySelector(
@@ -53,10 +51,6 @@ const closePopupEsc = (event) => {
 };
 function openPopup(popup) {
   popup.classList.add("popup_opened");
-
-  enableValidation(formSettings);
-  formSettings.forEach((item) => console.log(item));
-  //enableValidation();
   document.addEventListener("keydown", closePopupEsc);
 }
 function closePopup(popup) {

@@ -25,13 +25,7 @@ export function downloadingSereveCards() {
 export function downloadingServerProfileInfo() {
   return fetch(`${config.baseUrl}/users/me`, {
     headers: config.headers,
-  }).then(function (response) {
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error("Ошибка");
-    }
-  });
+  }).then((response) => checkResponse(response));
 }
 
 //загрузка изменения информации о пользователе на сервер
@@ -43,13 +37,7 @@ export function changeServerProfileInfo(name, about) {
       name,
       about,
     }),
-  }).then(function (response) {
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error("Ошибка");
-    }
-  });
+  }).then((response) => checkResponse(response));
 }
 
 //загрузка новой аватарки на сервер
@@ -60,13 +48,7 @@ export function changeServerAvatar(avatarsrc) {
     body: JSON.stringify({
       avatar: avatarsrc,
     }),
-  }).then(function (response) {
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error("Ошибка");
-    }
-  });
+  }).then((response) => checkResponse(response));
 }
 
 //добавление карточки на сервер
@@ -78,13 +60,7 @@ export function addCardOnServer(name, link) {
       name: name,
       link: link,
     }),
-  }).then(function (response) {
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error("Ошибка");
-    }
-  });
+  }).then((response) => checkResponse(response));
 }
 
 //удаление карточки
@@ -92,13 +68,7 @@ export function deleteCard(cardId) {
   return fetch(`${config.baseUrl}/cards/${cardId}`, {
     method: "DELETE",
     headers: config.headers,
-  }).then((response) => {
-    if (response.ok) {
-      console.log("Карточка успешно удалена");
-    } else {
-      console.log("Ошибка при удалении карточки");
-    }
-  });
+  }).then((response) => checkResponse(response));
 }
 
 // Функция для постановки лайка
@@ -106,13 +76,7 @@ export function likeCard(cardId) {
   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: "PUT",
     headers: config.headers,
-  }).then(function (response) {
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error("Ошибка");
-    }
-  });
+  }).then((response) => checkResponse(response));
 }
 
 // Функция для снятия лайка
@@ -120,11 +84,5 @@ export function dislikeCard(cardId) {
   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: "DELETE",
     headers: config.headers,
-  }).then(function (response) {
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error("Ошибка");
-    }
-  });
+  }).then((response) => checkResponse(response));
 }

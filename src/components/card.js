@@ -8,7 +8,7 @@ const createButton = document.querySelector(
 );
 const cardsContainer = document.querySelector(".elements");
 
-import { closePopup, openPopup, popupAddItem } from "./modal";
+import { openPopup } from "./modal";
 import { popupImage, popupDescription, image } from "./modal";
 import { deleteCard, likeCard, dislikeCard } from "./api";
 import { profileId } from "../index";
@@ -64,6 +64,7 @@ function createCard(data) {
     openPopup(popupImage);
     popupDescription.textContent = data.name;
     image.setAttribute("src", data.link);
+    image.setAttribute("alt", data.name);
   });
 
   // Функция для обновления счетчика лайков
