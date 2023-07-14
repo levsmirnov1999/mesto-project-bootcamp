@@ -27,8 +27,9 @@
 .popup__image{max-height:75vh;max-width:75vw;-o-object-fit:contain;object-fit:contain}
 .popup__description{color:#fff;font-size:12px;font-weight:400;line-height:15px;margin:10px 0 0}
 .popup_image{background-color:rgba(0,0,0,.9)}
-.popup__input-error{color:red;display:block;font-size:12px;font-weight:400;line-height:14.52px;min-height:34px;width:358px}
+.popup__input-error{color:red;display:block;font-size:12px;font-weight:400;line-height:14.52px;min-height:34px;opacity:0;width:358px}
 .popup__input_invalid{border-bottom:1px solid red}
+.popup__input-error_active{opacity:1}
 .elements{-moz-column-gap:17px;column-gap:17px;display:grid;grid-template-columns:repeat(3,1fr);margin:46px auto 0;max-width:880px;row-gap:20px}@media screen and (max-width:890px){.elements{grid-template-columns:repeat(1,1fr);margin-top:36px}}
 .elements__card{background-color:#fff;border-radius:10px;position:relative;width:282px}@media screen and (max-width:890px){.elements__card{margin:0 auto}}
 .elements__delete-icon{background-color:transparent;background-image:url(823b0cf1b0b7e9cb7cad.svg);background-repeat:no-repeat;background-size:cover;border:none;display:none;height:19px;opacity:1;position:absolute;right:20px;top:20px;transition-delay:0;transition-duration:.3s;transition-property:opacity;transition-timing-function:linear;width:18px}.elements__delete-icon:hover{opacity:.6}
